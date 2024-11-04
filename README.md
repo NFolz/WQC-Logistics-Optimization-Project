@@ -1,4 +1,5 @@
 **Project Overview: Quantum Optimization of Vehicle Routing Problem (VRP)**
+
 **Introduction**
 The Western Quantum Computing Club (WQC) is developing an innovative quantum algorithm to optimize the Vehicle Routing Problem (VRP), a significant challenge in logistics and supply chain management. Leveraging quantum computing's unique capabilities, our solution aims to identify the most efficient routes for distributors, minimizing fuel costs and reducing delivery times despite fluctuating daily conditions.
 
