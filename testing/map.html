@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDonald's Locations in London, Ontario</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+
+    <script>
+        // Initialize the map and set view to London, Ontario
+        const map = L.map('map').setView([42.9849, -81.2453], 12);
+
+        // Add a tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Hardcoded locations of McDonald's in London, Ontario
+        const mcDonaldsLocations = [
+            { lat: 42.981, lng: -81.249, name: "1074 Wellington Road South" },
+            { lat: 42.914, lng: -81.292, name: "4350 Wellington Road South" },
+            { lat: 42.950, lng: -81.217, name: "462 Wharncliffe Road" },
+            { lat: 42.967, lng: -81.228, name: "330 Clarke Road" },
+            { lat: 42.970, lng: -81.270, name: "61 Oxford Street West" },
+            { lat: 42.936, lng: -81.227, name: "385 Wellington Road South" },
+            { lat: 42.992, lng: -81.249, name: "151 Dundas Street" },
+            { lat: 42.951, lng: -81.231, name: "959 Hamilton Road East" },
+            { lat: 42.969, lng: -81.240, name: "1159 Highbury Avenue" },
+            { lat: 42.952, lng: -81.285, name: "1105 Wellington Road South (Walmart - White Oaks Mall)" },
+            { lat: 42.973, lng: -81.281, name: "1033 Wonderland Road South" },
+            { lat: 42.953, lng: -81.237, name: "1950 Dundas Street" }
+        ];
+
+        // Add markers for each McDonald's location
+        mcDonaldsLocations.forEach(location => {
+            L.marker([location.lat, location.lng])
+                .addTo(map)
+                .bindPopup(`<b>McDonald's</b><br>${location.name}`);
+        });
+
+        // Call the function to load and display McDonald's locations
+        // loadMcDonaldsLocations();
+    </script>
+</body>
+</html>
