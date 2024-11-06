@@ -111,3 +111,51 @@ def testRouteCost():
     assert routeCost50 == routes_cost[50], f"Expected {routeCost50}, got {routes_cost[50]}"
 
 testRouteCost()
+
+fulfilledRouteCombinations = []
+
+def routeCombinations(route_1,route_2):
+    
+    oneFlag = False
+    twoFlag = False
+    threeFlag = False
+    fourFlag = False
+
+
+    if route_1[1] == 1 or route_2[1] == 1:
+        oneFlag = True
+
+    
+    if route_1[2] == 1 or route_2[2] == 1:
+        twoFlag = True
+
+   
+    if route_1[3] == 1 or route_2[3] == 1:
+        threeFlag = True
+
+   
+    if route_1[4] == 1 or route_2[4] == 1:
+        fourFlag = True
+
+    if oneFlag and twoFlag and threeFlag and fourFlag:
+        return True
+    else:
+        return False
+
+
+count=0
+for route_number, route in routesDecisionVariables.items():
+    count2 =0
+    if count==42:
+        break
+    for route_number_2, route_2 in routesDecisionVariables.items():
+        if count2==42:
+            break
+        if(routeCombinations(route_2,route)):
+            fulfilledRouteCombinations.append({route_number,route_number_2})
+        count2+=1
+    count+=1
+
+print(fulfilledRouteCombinations)
+
+
