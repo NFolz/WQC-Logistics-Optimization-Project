@@ -116,7 +116,8 @@ testRouteCost()
 
 fulfilledRouteCombinations = []
 current_min = 150
-current_min_route_combo={}
+#redundant values just to initialize array size
+current_min_route_combo=[1,2]
 def routeCombinations(route_1,route_2):
     
     oneFlag = False
@@ -151,7 +152,8 @@ def calculateRouteCost(route_1,route_2):
     min =routes_cost[route_1] + routes_cost[route_2]
     if(min<current_min):
         current_min= min
-        current_min_route_combo={route_1,route_2}
+        current_min_route_combo[0]=route_1
+        current_min_route_combo[1]=route_2
         #print(route_1,route_2)
 
 
@@ -174,6 +176,30 @@ for route_number, route in routesDecisionVariables.items():
 print(current_min_route_combo)
 print(current_min)
 
+
+
+import json
+
+firstRouteToSend = []
+secondRouteToSend= []
+
+for route_number,route in routes.items():
+    if route_number==current_min_route_combo[0]:
+        firstRouteToSend=route
+    if route_number==current_min_route_combo[1]:
+        secondRouteToSend=route
+
+data_to_send = {
+    "firstRouteToSend": firstRouteToSend,
+    "secondRouteToSend": secondRouteToSend
+}
+
+# Write the coordinates to a JSON file
+with open("testing/routes.json", "w") as file:
+    #converts python objects data to JSON Format
+    json.dump(data_to_send, file)
+
+print("JSON file created: coordinates.json")
 
 
 
