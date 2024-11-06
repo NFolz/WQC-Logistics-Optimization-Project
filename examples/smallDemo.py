@@ -118,33 +118,56 @@ fulfilledRouteCombinations = []
 current_min = 150
 #redundant values just to initialize array size
 current_min_route_combo=[1,2]
-def routeCombinations(route_1,route_2):
+
+#working function but refactoring to try and enforce QUBO Constraint of only one visit
+# def routeCombinations(route_1,route_2):
     
-    oneFlag = False
-    twoFlag = False
-    threeFlag = False
-    fourFlag = False
+#     oneFlag = False
+#     twoFlag = False
+#     threeFlag = False
+#     fourFlag = False
 
 
-    if route_1[1] == 1 or route_2[1] == 1:
-        oneFlag = True
+#     if route_1[1] == 1 or route_2[1] == 1:
+#         if oneFlag==True:
+#             return False
+#         oneFlag = True
 
     
-    if route_1[2] == 1 or route_2[2] == 1:
-        twoFlag = True
+#     if route_1[2] == 1 or route_2[2] == 1:
+#         if twoFlag==True:
+#             return False
+#         twoFlag = True
 
    
-    if route_1[3] == 1 or route_2[3] == 1:
-        threeFlag = True
+#     if route_1[3] == 1 or route_2[3] == 1:
+#         if threeFlag==True:
+#             return False
+#         threeFlag = True
 
    
-    if route_1[4] == 1 or route_2[4] == 1:
-        fourFlag = True
+#     if route_1[4] == 1 or route_2[4] == 1:
+#         if fourFlag==True:
+#             return False
+#         fourFlag = True
 
-    if oneFlag and twoFlag and threeFlag and fourFlag:
-        return True
-    else:
-        return False
+#     if oneFlag and twoFlag and threeFlag and fourFlag:
+#         return True
+#     else:
+#         return False
+
+def routeCombinations(route_1, route_2):
+    visited = set()
+
+    # Iterate through both routes
+    for node in range(1, max(route_1,route_2)):  # Nodes 1 to 4
+        if route_1[node] == 1 or route_2[node] == 1:
+            if node in visited:  # Check if the node has already been visited
+                return False  # Duplicate visit detected
+            visited.add(node)  # Mark this node as visited
+
+    # If all nodes are visited exactly once, return True
+    return len(visited) == 4
 
 def calculateRouteCost(route_1,route_2):
     global current_min
