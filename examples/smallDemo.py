@@ -112,8 +112,11 @@ def testRouteCost():
 
 testRouteCost()
 
-fulfilledRouteCombinations = []
 
+
+fulfilledRouteCombinations = []
+current_min = 150
+current_min_route_combo={}
 def routeCombinations(route_1,route_2):
     
     oneFlag = False
@@ -142,6 +145,15 @@ def routeCombinations(route_1,route_2):
     else:
         return False
 
+def calculateRouteCost(route_1,route_2):
+    global current_min
+    global current_min_route_combo
+    min =routes_cost[route_1] + routes_cost[route_2]
+    if(min<current_min):
+        current_min= min
+        current_min_route_combo={route_1,route_2}
+        #print(route_1,route_2)
+
 
 count=0
 for route_number, route in routesDecisionVariables.items():
@@ -153,9 +165,16 @@ for route_number, route in routesDecisionVariables.items():
             break
         if(routeCombinations(route_2,route)):
             fulfilledRouteCombinations.append({route_number,route_number_2})
+            calculateRouteCost(route_number,route_number_2)
+
         count2+=1
     count+=1
 
-print(fulfilledRouteCombinations)
+# print(fulfilledRouteCombinations)
+print(current_min_route_combo)
+print(current_min)
+
+
+
 
 
