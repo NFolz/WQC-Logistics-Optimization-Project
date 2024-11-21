@@ -57,7 +57,7 @@ model = capacitated_vehicle_routing( #using the dwave library to model the VRP u
     locations_x=[x for x,y in sitesGoogle],
     locations_y=[y for x,y in sitesGoogle])
 
-sampler = LeapHybridNLSampler(token="DEV-edba7dbb3a72fc17fe9561831ed5792ddea6c5b2") #specifying the type of solver we are going to submit our problem to
+sampler = LeapHybridNLSampler(token="") #specifying the type of solver we are going to submit our problem to
 results = sampler.sample( #creating an object to store the results of the computation
     model, #model as the input
     time_limit=10) #maximum time we want to allow the solver to use

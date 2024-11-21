@@ -3,7 +3,7 @@ from ortools.constraint_solver import pywrapcp, routing_enums_pb2
 import time
 
 # Google Maps API Key
-API_KEY = "AIzaSyAxTQlAByvbKE3J-d-1rISFuID2zwMNLnE"
+API_KEY = ""
 
 # Initialize the Google Maps client
 gmaps = googlemaps.Client(key=API_KEY)
