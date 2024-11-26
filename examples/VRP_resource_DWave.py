@@ -1,11 +1,15 @@
 from dwave.system import LeapHybridNLSampler
-from dwave.system import DWaveSampler, EmbeddingComposite
-from dwave.optimization.generators import capacitated_vehicle_routing
-import dwave.inspector
+# from dwave.system import DWaveSampler, EmbeddingComposite
+from dwave.optimization.generators import capacitated_vehicle_routing # https://docs.ocean.dwavesys.com/en/stable/docs_optimization/reference/generators.html#dwave.optimization.generators.capacitated_vehicle_routing
+# import dwave.inspector
 from dimod import *
-import numpy as np
+# import numpy as np
 import random
 import time
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 startTime=time.time()
 
@@ -57,7 +61,8 @@ model = capacitated_vehicle_routing( #using the dwave library to model the VRP u
     locations_x=[x for x,y in sitesGoogle],
     locations_y=[y for x,y in sitesGoogle])
 
-sampler = LeapHybridNLSampler(token="") #specifying the type of solver we are going to submit our problem to
+# For the token, create a .env file in the root directory and add your token (DWAVELEAP_TOKEN=your_token)
+sampler = LeapHybridNLSampler(token=os.getenv('DWAVELEAP_TOKEN')) #specifying the type of solver we are going to submit our problem to
 results = sampler.sample( #creating an object to store the results of the computation
     model, #model as the input
     time_limit=10) #maximum time we want to allow the solver to use
